@@ -1,0 +1,179 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/*
+ * Sistema visual do Ponte Zero (slide 11 da apresentação):
+ * azul das nuvens como cor principal, vermelho da ponte para ações importantes,
+ * céu quente para destaques e fundo creme.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Paleta da ponte */
+  --color-nuvem: #4d91b1;
+  --color-profundo: #235369;
+  --color-ponte: #dc412b;
+  --color-ponte-claro: #fce5dc;
+  --color-ceu: #f7b577;
+  --color-creme: #fff2d8;
+  --color-papel: #fff9eb;
+  --color-gelo: #e2f0f4;
+  --color-cinza: #6b7d82;
+  --color-texto: #2c454d;
+
+  --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 14px;
+  --background: #fff9eb;
+  --foreground: #235369;
+  --card: #ffffff;
+  --card-foreground: #235369;
+  --popover: #ffffff;
+  --popover-foreground: #235369;
+  --primary: #dc412b;
+  --primary-foreground: #ffffff;
+  --secondary: #4d91b1;
+  --secondary-foreground: #ffffff;
+  --muted: #e2f0f4;
+  --muted-foreground: #6b7d82;
+  --accent: #e2f0f4;
+  --accent-foreground: #235369;
+  --destructive: #dc412b;
+  --destructive-foreground: #ffffff;
+  --border: #e2f0f4;
+  --input: #d4e6ec;
+  --ring: #4d91b1;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Rótulo vermelho acima do título — "05 • PAINEL DA EQUIPE" */
+@utility eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ponte);
+}
+
+@utility card {
+  background: #ffffff;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 2px rgb(35 83 105 / 0.06), 0 6px 18px -10px rgb(35 83 105 / 0.25);
+}
+
+@utility tag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--color-gelo);
+  color: var(--color-profundo);
+}
+
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 12px;
+  background: var(--color-ponte);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.8rem 1.1rem;
+  transition: filter 0.15s, transform 0.15s;
+  &:hover {
+    filter: brightness(1.06);
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+@utility btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 12px;
+  background: var(--color-gelo);
+  color: var(--color-profundo);
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+  &:hover {
+    background: #d4e6ec;
+  }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+@utility field {
+  width: 100%;
+  border-radius: 12px;
+  border: 1.5px solid var(--color-gelo);
+  background: #fff;
+  padding: 0.65rem 0.85rem;
+  color: var(--color-profundo);
+  outline: none;
+  &::placeholder {
+    color: var(--color-cinza);
+  }
+  &:focus {
+    border-color: var(--color-nuvem);
+    box-shadow: 0 0 0 3px rgb(77 145 177 / 0.2);
+  }
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
